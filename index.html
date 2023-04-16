@@ -35,6 +35,14 @@
                     }
                 }
                 render() {
+                    if (this.state.cardsLen === 0) {
+                        return (
+                            <div>
+                            <h2>No cards to display!</h2>
+                            <button onClick={this.props.switchMode} >Switch to editor</button>
+                            </div>
+                        );
+                    }
                     const card = this.props.cards[this.state.cardIndex]
                     return (
                         <div>
