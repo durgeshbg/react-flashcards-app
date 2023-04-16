@@ -49,7 +49,7 @@
                             <tr key={i}>
                                 <td>{card.front}</td>
                                 <td>{card.back}</td>
-                                <td><button>Delete</button></td>
+                                <td><button onClick={this.deleteCard} >Delete</button></td>
                             </tr>
                         );
                     })
@@ -77,15 +77,23 @@
                         </div>
                     );
                 }
+
                 handleChange = (event) => {
                     this.setState(state => ({
                         [event.target.name]: event.target.value
                     }));
                 }
+
                 addCard = (event) => {
-                    this
+                    this.props.addCard(this.state.front, this.state.back);
+                    this.setState({
+                        front: "",
+                        back: "",
+                    });
                 }
+
             }
+
             class App extends React.Component {
                 constructor(props) {
                     super(props);
@@ -102,6 +110,8 @@
                             <CardEditor 
                                 switchMode={this.switchMode}
                                 cards={this.state.cards}
+                                addCard={this.addCard}
+                                deleteCard={this.deleteCard}
                             />
                         );
                     } else {
@@ -118,6 +128,13 @@
                         editor: !state.editor
                     }));
                 }
+
+                addCard = (front, back) => {
+                    this.setState(state => ({
+                        cards: [...state.cards,{front, back}]
+                    }));
+                }
+
             }
             ReactDOM.render(<App />, document.querySelector("#app"));
         </script>
