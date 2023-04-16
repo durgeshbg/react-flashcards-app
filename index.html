@@ -21,8 +21,33 @@
         <div id="app"></div>
 
         <script type="text/babel">
+            class CardViewer extends React.Component {
+                render() {
+                    return (
+                        <div>
+                            This is card viewer.
+                        </div>
+                    );
+                }
+            }
+            class CardEditor extends React.Component {
+                render() {
+                    return (
+                        <div>
+                            This is card editor.
+                        </div>
+                    );
+                }
+            }
             class App extends React.Component {
-                
+                render() {
+                    return (
+                        <div>
+                            <CardViewer />
+                            <CardEditor />
+                        </div>
+                    );
+                }
             }
             ReactDOM.render(<App />, document.querySelector("#app"));
         </script>
