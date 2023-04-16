@@ -29,22 +29,37 @@
                 constructor(props) {
                     super(props);
                     this.state = {
-                        cardDisplay: this.props.cards[0].front
+                        cardIndex: 0,
+                        cardDisplay: "front"
                     }
                 }
                 render() {
+                    const card = this.props.cards[this.state.cardIndex]
                     return (
                         <div>
                             <h2>Card Viewer</h2>
                             <hr/>
-                                <div className="card">{this.state.cardDisplay}</div>
+                                <div className="card">{card[this.state.cardDisplay]}</div>
+                                <div>
+                                    <button onClick={this.flipCard} >Flip</button>
+                                </div>
                             <hr/>
                             <button onClick={this.props.switchMode} >Switch to editor</button>
                         </div>
                     );
                 }
 
-                
+                flipCard = () => {
+                    if (this.state.cardDisplay === "front") {
+                        this.setState({
+                            cardDisplay: "back"
+                        });
+                    } else {
+                        this.setState({
+                            cardDisplay: "front"
+                        });
+                    }
+                }
             }
 
             class CardEditor extends React.Component {
