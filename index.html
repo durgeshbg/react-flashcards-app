@@ -25,15 +25,28 @@
 
         <script type="text/babel">
             class CardViewer extends React.Component {
+
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        cardDisplay: this.props.cards[0].front
+                    }
+                }
                 render() {
                     return (
                         <div>
                             <h2>Card Viewer</h2>
+                            <hr/>
+                                <div className="card">{this.state.cardDisplay}</div>
+                            <hr/>
                             <button onClick={this.props.switchMode} >Switch to editor</button>
                         </div>
                     );
                 }
+
+                
             }
+
             class CardEditor extends React.Component {
 
                 constructor(props) {
@@ -121,6 +134,7 @@
                         return (
                             <CardViewer 
                                 switchMode={this.switchMode}
+                                cards={this.state.cards}
                             />
                         );
                     }
