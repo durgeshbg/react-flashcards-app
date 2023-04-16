@@ -25,7 +25,8 @@
                 render() {
                     return (
                         <div>
-                            This is card viewer.
+                            <h2>Card Viewer</h2>
+                            <button onClick={this.props.switchMode} >Switch to editor</button>
                         </div>
                     );
                 }
@@ -34,19 +35,41 @@
                 render() {
                     return (
                         <div>
-                            This is card editor.
+                            <h2>Card Editor</h2>
+                            <button onClick={this.props.switchMode} >Switch to viewer</button>
                         </div>
                     );
                 }
             }
             class App extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        cards: [],
+                        editor: true
+                    }
+                }
+
                 render() {
-                    return (
-                        <div>
-                            <CardViewer />
-                            <CardEditor />
-                        </div>
-                    );
+                    if (this.state.editor) {
+                        return (
+                            <CardEditor 
+                                switchMode={this.switchMode}
+                            />
+                        );
+                    } else {
+                        return (
+                            <CardViewer 
+                                switchMode={this.switchMode}
+                            />
+                        );
+                    }
+                }
+
+                switchMode = () => {
+                    this.setState(state => ({
+                        editor: !state.editor
+                    }));
                 }
             }
             ReactDOM.render(<App />, document.querySelector("#app"));
