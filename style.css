@@ -7,3 +7,9 @@ th, td {
 table {
     border-collapse: collapse;
 }
+.card {
+    border: solid 1px black;
+    padding: 40px;
+    width: 30%;
+    text-align: center;
+}
