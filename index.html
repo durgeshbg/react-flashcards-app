@@ -33,9 +33,32 @@
             }
             class CardEditor extends React.Component {
                 render() {
+                    const rows = this.props.cards.map((card,i) => {
+                        return (
+                            <tr key={i}>
+                            <td>{card.front}</td>
+                            <td>{card.back}</td>
+                            <td><button>Delete</button></td>
+                            </tr>
+                        );
+                    })
                     return (
                         <div>
                             <h2>Card Editor</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Front</th>
+                                        <th>Back</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        {rows}
+                                    </tr>
+                                </tbody>
+                            </table>
                             <button onClick={this.props.switchMode} >Switch to viewer</button>
                         </div>
                     );
@@ -45,7 +68,8 @@
                 constructor(props) {
                     super(props);
                     this.state = {
-                        cards: [],
+                        cards: [{front:"test front 1", back: "test back 1"},
+                                {front:"test front 2", back: "test back 2"}],
                         editor: true
                     }
                 }
@@ -55,6 +79,7 @@
                         return (
                             <CardEditor 
                                 switchMode={this.switchMode}
+                                cards={this.state.cards}
                             />
                         );
                     } else {
