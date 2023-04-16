@@ -16,6 +16,9 @@
         
         <title>Flash Cards</title>
 
+        <!-- Style Sheet -->
+        <link rel="stylesheet" href="style.css">
+
     </head>
     <body>
         <div id="app"></div>
@@ -36,9 +39,9 @@
                     const rows = this.props.cards.map((card,i) => {
                         return (
                             <tr key={i}>
-                            <td>{card.front}</td>
-                            <td>{card.back}</td>
-                            <td><button>Delete</button></td>
+                                <td>{card.front}</td>
+                                <td>{card.back}</td>
+                                <td><button>Delete</button></td>
                             </tr>
                         );
                     })
@@ -54,9 +57,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        {rows}
-                                    </tr>
+                                    {rows}
                                 </tbody>
                             </table>
                             <button onClick={this.props.switchMode} >Switch to viewer</button>
