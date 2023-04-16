@@ -49,7 +49,7 @@
                             <tr key={i}>
                                 <td>{card.front}</td>
                                 <td>{card.back}</td>
-                                <td><button onClick={this.deleteCard} >Delete</button></td>
+                                <td><button data-id={i} onClick={this.deleteCard} >Delete</button></td>
                             </tr>
                         );
                     })
@@ -92,6 +92,9 @@
                     });
                 }
 
+                deleteCard = (event) => {
+                    this.props.deleteCard(event.target.dataset.id);
+                }
             }
 
             class App extends React.Component {
@@ -135,6 +138,13 @@
                     }));
                 }
 
+                deleteCard = (id) => {
+                    this.setState(state => {
+                        const cards = [...state.cards];
+                        cards.splice(id, 1);
+                        return { cards };
+                    })
+                }
             }
             ReactDOM.render(<App />, document.querySelector("#app"));
         </script>
