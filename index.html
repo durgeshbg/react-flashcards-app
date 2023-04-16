@@ -30,6 +30,7 @@
                     super(props);
                     this.state = {
                         cardIndex: 0,
+                        cardsLen: this.props.cards.length,
                         cardDisplay: "front"
                     }
                 }
@@ -39,10 +40,9 @@
                         <div>
                             <h2>Card Viewer</h2>
                             <hr/>
-                                <div className="card">{card[this.state.cardDisplay]}</div>
-                                <div>
-                                    <button onClick={this.flipCard} >Flip</button>
-                                </div>
+                            <div className="card">{card[this.state.cardDisplay]}</div>
+                            <button onClick={this.flipCard} >Flip</button>
+                            <button onClick={this.nextCard} className="buttons" >Next</button>
                             <hr/>
                             <button onClick={this.props.switchMode} >Switch to editor</button>
                         </div>
@@ -59,6 +59,13 @@
                             cardDisplay: "front"
                         });
                     }
+                }
+
+                nextCard = () => {
+                    this.setState(state => ({
+                        cardIndex: (state.cardIndex + 1) % state.cardsLen,
+                        cardDisplay: "front"
+                    }));
                 }
             }
 
